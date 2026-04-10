@@ -2,7 +2,8 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class Main {
+public class
+StreamingMusica {
     static final String[] GENEROS_VALIDOS = {"Pop", "Rock", "Jazz", "Eletrônica", "Hip-Hop", "Clássica"};
     static Scanner scanner = new Scanner(System.in);
     static ArrayList<Musica> musicas = new ArrayList<>();
@@ -113,15 +114,16 @@ public class Main {
 
         System.out.print("Duração (em segundos): ");
         int duracao;
+
         try {
             duracao = Integer.parseInt(scanner.nextLine());
-        } catch (NumberFormatException e) {
-            System.out.println("❌ Duração inválida!");
-            return;
-        }
 
-        if (duracao <= 0) {
-            System.out.println("❌ Duração deve ser maior que 0!");
+            if (duracao <= 0 || duracao > 3600) {
+                throw new NumberFormatException();
+            }
+
+        } catch (NumberFormatException e) {
+            System.out.println("❌ Duração inválida! A duração não pode ultrpassar 3600 segundo e não pode ter menos de 0 segundos.");
             return;
         }
 
@@ -199,11 +201,12 @@ public class Main {
         }
 
         System.out.println("-".repeat(20));
+        String nomePlaylist;
 
         System.out.println("Informe o nome da playlist: ");
-        String nomePlaylist = scanner.nextLine();
 
-        Playlist playlist = new Playlist(nomePlaylist);
+        nomePlaylist = scanner.nextLine().trim();
+        Playlist playlist = usuario.criarPlaylist(nomePlaylist);
         usuario.adicionarPlaylist(playlist);
         System.out.println("✅ Playlist criada!");
 
@@ -315,7 +318,7 @@ public class Main {
         try {
             System.out.println("-".repeat(20));
             System.out.print("Informe uma parte ou o nome completo da playlist: ");
-            String nomePlaylist = scanner.nextLine();
+            String nomePlaylist = scanner.nextLine().trim();
 
             for (Playlist playlist : usuario.getPlaylists()) {
                 if (playlist.getNome().toLowerCase().contains(nomePlaylist.toLowerCase())) {

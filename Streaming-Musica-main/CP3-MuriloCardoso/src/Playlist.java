@@ -64,6 +64,11 @@ public class Playlist {
     }
 
     public void setMusicas(ArrayList<Musica> musicas) {
+        if (musicas.isEmpty()) {
+            System.out.println("A lista está vazia, não há como colocar ela.");
+            return;
+        }
+
         this.musicas = musicas;
     }
 }

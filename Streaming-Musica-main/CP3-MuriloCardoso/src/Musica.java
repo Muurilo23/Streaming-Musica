@@ -3,6 +3,8 @@ public class Musica {
     private String artista;
     private double duracaoSegundos;
     private String genero;
+    private final String[] GENEROS_VALIDOS = {"Pop", "Rock", "Jazz", "Eletrônica", "Hip-Hop", "Clássica"};
+
 
     public Musica(String titulo, String artista, double duracaoSegundos, String genero) {
         this.titulo = titulo;
@@ -39,6 +41,11 @@ public class Musica {
     }
 
     public void setTitulo(String titulo) {
+        if (titulo.isEmpty()) {
+            System.out.println("O nome não pode estar vazio.");
+            return;
+        }
+
         this.titulo = titulo;
     }
 
@@ -47,6 +54,10 @@ public class Musica {
     }
 
     public void setArtista(String artista) {
+        if (artista.isEmpty()) {
+            System.out.println("O nome não pode estar vazio.");
+            return;
+        }
         this.artista = artista;
     }
 
@@ -63,6 +74,14 @@ public class Musica {
     }
 
     public void setGenero(String genero) {
-        this.genero = genero;
+        for (String genero_valido : GENEROS_VALIDOS) {
+            if (genero.equals(genero_valido)) {
+                this.genero = genero;
+                return;
+            }
+        }
+        System.out.println("-".repeat(20));
+        System.out.println("Não é um gêneroe valido.");
+        return;
     }
 }
