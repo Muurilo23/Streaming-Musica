@@ -1,9 +1,15 @@
-public class Musica {
+package br.com.streaming.modelo;
+
+import br.com.streaming.servico.Reproduzivel;
+
+public class Musica implements Reproduzivel {
     private String titulo;
     private String artista;
     private double duracaoSegundos;
     private String genero;
     private final String[] GENEROS_VALIDOS = {"Pop", "Rock", "Jazz", "Eletrônica", "Hip-Hop", "Clássica"};
+    private int tocadas;
+    private int totalPlaylist;
 
 
     public Musica(String titulo, String artista, double duracaoSegundos, String genero) {
@@ -35,7 +41,33 @@ public class Musica {
         return false;
     }
 
+    public void aumentarContadorMusica() {
+        tocadas++;
+    }
+
+    public void addPlaylist() {
+        totalPlaylist++;
+    }
+
+    @Override
+    public void reproduzir() {
+
+    }
+
+    @Override
+    public int getDuracaoTotal() {
+        return ((int) duracaoSegundos);
+    }
+
     // Getters e Setters
+    public int getTotalPlaylist() {
+        return totalPlaylist;
+    }
+
+    public void setTotalPlaylist(int totalPlaylist) {
+        this.totalPlaylist = totalPlaylist;
+    }
+
     public String getTitulo() {
         return titulo;
     }
@@ -61,10 +93,6 @@ public class Musica {
         this.artista = artista;
     }
 
-    public double getDuracaoSegundos() {
-        return duracaoSegundos;
-    }
-
     public void setDuracaoSegundos(double duracaoSegundos) {
         this.duracaoSegundos = duracaoSegundos;
     }
@@ -84,4 +112,13 @@ public class Musica {
         System.out.println("Não é um gêneroe valido.");
         return;
     }
+
+    public int getTocadas() {
+        return tocadas;
+    }
+
+    public void setTocadas(int tocadas) {
+        this.tocadas = tocadas;
+    }
+
 }

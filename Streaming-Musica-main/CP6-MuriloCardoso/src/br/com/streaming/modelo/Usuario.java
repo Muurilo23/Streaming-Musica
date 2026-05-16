@@ -1,3 +1,5 @@
+package br.com.streaming.modelo;
+
 import java.util.ArrayList;
 
 public class Usuario {
@@ -26,12 +28,14 @@ public class Usuario {
             return;
         }
 
-        Playlist playlist = new Playlist(nome);
+        PlaylistPersonalizada playlistPersonalizada = new PlaylistPersonalizada(nome);
+        playlists.add(playlistPersonalizada);
     }
 
     public void reproduzirMusica(Musica musica) {
         System.out.println("🎵 Reproduzindo: " + musica.getTitulo());
         historicoReproducao.add(musica);
+        musica.aumentarContadorMusica();
     }
 
     public void exibirHistorico() {
